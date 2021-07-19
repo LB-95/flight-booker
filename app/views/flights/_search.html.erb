@@ -1,0 +1,42 @@
+<%= form_with(model: @flight, method: "GET") do |f|%>
+<table>
+<tbody>
+
+<td>
+ <div>
+    <%= f.label :to_airport, 'Where are you going?' %>
+    <%= f.select(:to_airport, @airports) %>
+  </div>
+  </td>
+    <br>
+
+  <td>
+  <div>
+    <%= f.label :from_airport, "From where?" %>
+    <%= f.select(:from_airport, @airports) %>
+  </div>
+  </td>
+    <br>
+
+  <td> 
+   <div>
+    <%= f.label :departure_date, "What date?" %>
+    <%= f.select(:departure_date, @dates) %>
+  </div>
+  </td>
+    <br>
+
+  <td> 
+  <div>
+    <%= f.label :passengers, "How many people?" %>
+    <%= f.select(:passengers, @passengers) %>
+  </div>
+  </td>
+
+  </tbody>
+</table>
+<br><br>
+
+<%= f.button "Search Flights" %>
+
+<% end %>

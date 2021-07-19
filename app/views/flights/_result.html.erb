@@ -1,0 +1,56 @@
+<div class="centered">
+  <% if @result.length > 0 %>
+    <div class="title is-2">
+      <%= @result.first.from_airport.code%>
+      <span><i class="fas fa-angle-double-right"></i></span>
+      <%= @result.first.to_airport.code %>
+    </div>
+    <div class="title is-6">
+      <%= @result.first.departure_date %>
+    </div>
+
+    <div class="section">
+      <div class="level">
+        <div class="level-item">
+          Departure
+        </div>
+        <div class="level-item">
+          Flight Duration
+        </div>
+        <div class="level-item">
+          Arrival
+        </div>
+        <div class="level-item">
+          Select
+        </div>
+      </div>
+      <%= form_with(model: @booking, url: {action: "new", controller: "bookings"}, method: "get") do |form|%>
+        <% @result.each do |flight| %>
+          <div class="box">
+            <div class="level">
+              <div class="level-item">
+                <span><i class="fas fa-plane-departure"></i></span>
+                <%= flight.departure_time.strftime("%H\:%M") %>
+              </div>
+              <div class="level-item">
+                <span><i class="far fa-clock"></i></span>
+                <%= Time.at(flight.flight_duration).strftime("%H\:%M") %>
+              </div>
+              <div class="level-item">
+                <span><i class="fas fa-plane-arrival"></i></span>
+                <%= (flight.departure_time + flight.flight_duration).strftime("%H\:%M") %>
+              </div>
+              <div class="level-item">
+                  <%= form.radio_button :flight_id, flight.id %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.hidden_field :passengers, :value => params[:flight][:passengers] %>
+        <%= form.submit "Book Flight", class: "button is-info" %>
+      <% end %>
+    </div>
+  <% else %>
+    No result.
+  <% end %>
+</div>

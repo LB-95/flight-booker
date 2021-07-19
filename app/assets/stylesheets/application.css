@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+ .navbar-brand .title {
+    color: white;
+  }
+  
+  .table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+  
+  .centered {
+    text-align: center;
+  }

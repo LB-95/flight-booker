@@ -1,0 +1,61 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <div class="centered">
+            <div class="title is-2">
+              <%= @flight.from_airport.code%>
+              <span><i class="fas fa-angle-double-right"></i></span>
+              <%= @flight.to_airport.code %>
+            </div>
+            <div class="box">
+              <div class="title is-6">
+                <%= @flight.departure_date %>
+              </div>
+              <div class="level">
+                <div class="level-item">
+                  <span><i class="fas fa-plane-departure"></i></span>
+                  Departure: <%= @flight.departure_time.strftime("%H\:%M")%>
+                </div>
+                <div class="level-item">
+                  <span><i class="far fa-clock"></i></span>
+                  Duration: <%= Time.at(@flight.flight_duration).strftime("%H\:%M")%>
+                </div>
+                <div class="level-item">
+                  <span><i class="fas fa-plane-arrival"></i></span>
+                  Arrival: <%= (@flight.departure_time + @flight.flight_duration).strftime("%H\:%M") %>
+                </div>
+              </div>
+            </div>
+            <div class="title is-4">
+              Passengers Details
+            </div>
+            <div class="block">
+              <%= form_with model: @booking do |f|%>
+                  <% index = 1 %>
+                  <%= f.fields_for :passengers do |pf|%>
+                    <div class="block">
+                      <%= "Passenger #{index}" %>
+                      <div class="block">
+                        <br />
+                        <%= pf.text_field :name, placeholder: "Name", class: "input", required: true, value: "" %>
+                      </div>
+                      <div class="block">
+                        <%= pf.text_field :email, placeholder: "E-mail", class: "input", required: true, value: "" %>
+                      </div>
+                    </div>
+                    <br />
+                    <% index += 1 %> 
+                  <% end %>
+                <%= f.hidden_field :flight_id, value: params[:flight_id]%>
+                <%= f.submit "Submit booking", class: "button is-info"%>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

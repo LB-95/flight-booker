@@ -8,9 +8,19 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' %>
   </head>
 
   <body>
+   <div class="section">
+      <div class="title is-1 centered">
+        <%= link_to "Flight Booker", root_path %>
+      </div>
+      <div class="title is-5 centered">
+        book your flight today
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
+
