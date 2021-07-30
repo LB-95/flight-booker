@@ -1,4 +1,6 @@
-Enter desired dates / airports and click “Search”
-Choose from among a list of eligible flights
-Enter passenger information for all passengers
-Enter billing information
+Flight-booker
+
+languages: ruby, html/css, js
+
+project:
+Passenger chooses a date and flight, then he gets the comformation and billing 
